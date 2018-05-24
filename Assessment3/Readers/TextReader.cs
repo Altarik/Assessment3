@@ -11,12 +11,8 @@ namespace Assessment3
 {
     public class TextReader : AbstractReader
     {
-        private IEncryption ReaderEncryption;
-
-        public TextReader(IEncryption encryption = null)
+        public TextReader(IEncryption encryption = null):base(encryption)
         {
-            //Used DI to have weak dependency between reader and encryption
-            ReaderEncryption = encryption;
         }
 
         public override string Read(string path)
