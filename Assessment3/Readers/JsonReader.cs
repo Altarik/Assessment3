@@ -12,41 +12,13 @@ using System.Threading.Tasks;
 
 namespace Assessment3
 {
-    public class JsonReader
+    public class JsonReader:AbstractReader
     {
-        protected IEncryption ReaderEncryption;
-        protected ISecurityRole SecurityRole;
-        protected string UserName = string.Empty;
-        protected string RoleName = string.Empty;
-
-        public JsonReader(IEncryption encryption = null, ISecurityRole securityRole = null, string userName = null, string roleName = null)
+        public JsonReader(IEncryption encryption = null, ISecurityRole securityRole = null, string userName = null, string roleName = null) : base(encryption, securityRole, userName, roleName)
         {
-            ReaderEncryption = encryption;
-            SecurityRole = securityRole;
-            UserName = userName;
-            RoleName = roleName;
         }
-
-        public string Read(string path)
-        {
-            //Set Security Role
-            if (SecurityRole != null)
-            {
-                SecurityRole.SetRights(UserName, RoleName);
-            }
-
-            // Read content
-            string content = RawRead(path);
-
-            if (ReaderEncryption != null)
-            {
-                content = ReaderEncryption.Decrypt(content);
-            }
-
-            return content;
-        }
-
-        private string RawRead(string path)
+        
+        protected override string RawRead(string path)
         {
             try
             {
