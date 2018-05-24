@@ -1,19 +1,20 @@
-﻿using System;
+﻿using Assessment3.Readers.Abstract;
+using System;
 using System.Collections.Generic;
-using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Xml.Linq;
 
 namespace Assessment3
 {
-    public class TextReader
+    public class XmlReader : AbstractReader
     {
-        public string Read(string path)
+        public override string Read(string path)
         {
             try
             {
-                return File.ReadAllText(path);
+                return XDocument.Load(path).ToString();
             }
             catch
             {

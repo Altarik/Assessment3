@@ -40,7 +40,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="TextReader.cs" />
+    <Compile Include="Readers\Abstract\AbstractReader.cs" />
+    <Compile Include="Readers\TextReader.cs" />
+    <Compile Include="Readers\XmlReader.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
