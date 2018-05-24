@@ -43,6 +43,7 @@
     <Compile Include="Encryptions\Interface\IEncryption.cs" />
     <Compile Include="Encryptions\ReverseEncryption.cs" />
     <Compile Include="Readers\Abstract\AbstractReader.cs" />
+    <Compile Include="Readers\JsonReader.cs" />
     <Compile Include="Readers\TextReader.cs" />
     <Compile Include="Readers\XmlReader.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
