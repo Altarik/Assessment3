@@ -12,6 +12,30 @@ namespace Assessment3
 {
     public class JsonReader
     {
-       
+        protected IEncryption ReaderEncryption;
+
+        public JsonReader(IEncryption encryption)
+        {
+            ReaderEncryption = encryption;
+        }
+
+        public string Read(string path)
+        {
+            // Read content
+            string content = RawRead(path);
+
+            //Decrypt encrypted file
+            if (ReaderEncryption != null)
+            {
+                content = ReaderEncryption.Decrypt(content);
+            }
+
+            return content;
+        }
+
+        private string RawRead(string path)
+        {
+            throw new NotImplementedException();
+        }
     }
 }
