@@ -15,18 +15,29 @@ namespace Assessment3
     public class JsonReader
     {
         protected IEncryption ReaderEncryption;
+        protected ISecurityRole SecurityRole;
+        protected string UserName = string.Empty;
+        protected string RoleName = string.Empty;
 
-        public JsonReader(IEncryption encryption)
+        public JsonReader(IEncryption encryption = null, ISecurityRole securityRole = null, string userName = null, string roleName = null)
         {
             ReaderEncryption = encryption;
+            SecurityRole = securityRole;
+            UserName = userName;
+            RoleName = roleName;
         }
 
         public string Read(string path)
         {
+            //Set Security Role
+            if (SecurityRole != null)
+            {
+                SecurityRole.SetRights(UserName, RoleName);
+            }
+
             // Read content
             string content = RawRead(path);
 
-            //Decrypt encrypted file
             if (ReaderEncryption != null)
             {
                 content = ReaderEncryption.Decrypt(content);
